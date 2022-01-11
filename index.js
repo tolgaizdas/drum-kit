@@ -6,12 +6,14 @@ document.querySelectorAll("button.drum").forEach(item => {
   item.addEventListener("click", function () {
     buttonContent = this.textContent;
     makeSound(buttonContent);
+    buttonAnimation(buttonContent);
   })
 });
 
 // detect keyboard press
 document.addEventListener("keydown", function (e) {
   makeSound(e.key);
+  buttonAnimation(e.key);
 });
 
 function makeSound(e) {
@@ -48,4 +50,13 @@ function makeSound(e) {
       console.log(e);
   }
   audio.volume = 0.05;
+}
+
+buttonAnimation = (currentKey) => {
+  let activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.add("pressed");
+
+  setTimeout(() => {
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
