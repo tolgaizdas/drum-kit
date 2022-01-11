@@ -46,17 +46,17 @@ function makeSound(e) {
       audio = new Audio("sounds/snare.mp3");
       audio.play();
       break;
-    default:
-      console.log(e);
   }
   audio.volume = 0.05;
 }
 
 buttonAnimation = (currentKey) => {
-  let activeButton = document.querySelector("." + currentKey);
-  activeButton.classList.add("pressed");
+  if (document.body.contains(document.getElementsByClassName(currentKey)[0])) {
+    let activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
 
-  setTimeout(() => {
-    activeButton.classList.remove("pressed");
-  }, 100);
+    setTimeout(() => {
+      activeButton.classList.remove("pressed");
+    }, 100);
+  }
 }
